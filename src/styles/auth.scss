@@ -1,0 +1,115 @@
+@import "mixins";
+
+.content {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  background: linear-gradient(to right, #10265A, #1C45A2);
+
+  .logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+
+    .loginpic {
+      width: 80%;
+      height: auto;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      color: white;
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+    }
+  }
+
+  .form,
+  .signupform {
+    width: 600px;
+    padding: 40px;
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+    background-color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+    .title {
+      font-size: 32px;
+      font-weight: bold;
+      text-align: left;
+      margin-bottom: 30px;
+    }
+
+    .contentbox {
+      display: flex; /* Enable flexbox for left and right columns */
+      gap: 20px; /* Space between left and right sections */
+      margin-bottom: 30px; /* Space below the contentbox */
+    }
+
+    .left,
+    .right {
+      flex: 1; /* Each column takes up equal width */
+    }
+
+    .left h2,
+    .right h2, .subtitle {
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .el-form-item {
+      margin-bottom: 20px; /* Space between form items */
+    }
+
+    el-button {
+      width: 100%;
+      height: 60px;
+      border-radius: 8px;
+      font-size: 18px;
+      background-color: #10265A;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        background-color: #002cb2;
+      }
+    }
+
+    .toggle-link {
+      text-align: left;
+      margin-top: 20px;
+      font-size: 16px;
+
+      a {
+        font-size: 16px;
+        color: #10265A;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  .signupform {
+    width: 45%;
+    height: 65%;
+  }
+  .loginbtn {
+    background-color: #183A87;
+    color: #fff;
+    width: 100%;
+  }
+  .error-message {
+    color: rgb(195, 1, 1);
+    font-size: 14px;
+    margin-block: 10px;
+  }
+}

@@ -1,4 +1,5 @@
 // src/utils/api.ts
+import type { LoginFormData } from '@/types/auth'
 import axios from 'axios'
 // import auth from './auth'
 // Create a centralized Axios instance with token handling
@@ -25,6 +26,19 @@ const apiClient = axios.create({
 // )
 
 // API functions using the centralized axios instance
+
+export const getdocsLogin = async (doctorData: LoginFormData) => {
+  try {
+    const response = await apiClient.post(`/api/doctors/login`, doctorData)
+    return response.data
+  } catch (error) {
+    if (axios.isAxiosError(error) && error.response) {
+      return { error: error.response.data.message }
+    } else {
+      return { error: 'An unexpected error occurred' }
+    }
+  }
+}
 
 export const getdocs = async id => {
   return apiClient.get(`/api/doctors/list`)

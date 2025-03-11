@@ -7,10 +7,9 @@ import { getdocs } from '@/utils/api'
 import { deletedoc } from '@/utils/api'
 import path1 from '@/assets/eye/panel1.png'
 import path2 from '@/assets/eye/panel2.png'
-// import path3 from '@/assets/cases/path3.png'
 import AppMenu from '@/layout/memu/index.vue'
 import { getMenuTree } from '@/utils/route'
-
+import auth from '@/utils/auth'
 const route = useRoute()
 const router = useRouter()
 
@@ -156,7 +155,10 @@ const cases = ref([
     images: [path1, path2]
   }
 ])
-
+const logout = async () => {
+  await auth.clearToken() // Clear the token
+  router.push({ name: 'Login' }) // Redirect to the login page
+}
 // Resolve images dynamically
 const resolvedCases = computed(() => {
   return cases.value.map(caseItem => ({
@@ -170,18 +172,6 @@ const selectedClinic = ref('All Clinic')
 const selectedGender = ref('All Gender')
 const selectedAge = ref('All Age')
 const selectedPackage = ref('All Package')
-
-const filteredPackages2 = computed(() => {
-  return packages2.value.filter(pkg => {
-    return (
-      (selectedState.value === 'All State' || pkg.state === selectedState.value) &&
-      (selectedClinic.value === 'All Clinic' || pkg.clinic === selectedClinic.value) &&
-      (selectedGender.value === 'All Gender' || pkg.gender === selectedGender.value) &&
-      (selectedAge.value === 'All Age' || pkg.age === selectedAge.value) &&
-      (selectedPackage.value === 'All Package' || pkg.package === selectedPackage.value)
-    )
-  })
-})
 
 const states = ref(['California', 'Texas', 'New York', 'Florida', 'Illinois'])
 
@@ -252,7 +242,7 @@ const menuTree = getMenuTree()
           </span>
           <template #dropdown>
             <el-dropdown-menu>
-              <el-dropdown-item @click="goPersonal">Profile</el-dropdown-item>
+              <el-dropdown-item @click="router.push('/personal')">Profile</el-dropdown-item>
               <el-dropdown-item @click="logout">Logout</el-dropdown-item>
             </el-dropdown-menu>
           </template>
